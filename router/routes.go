@@ -1,49 +1,27 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/marciopriebe/crud-go.git/handler"
 )
 
 func initializeRoutes(router *gin.Engine)  {
 	v1 := router.Group("/api/v1")
 	{
-		// Show Opening
-		v1.GET("/opening", func (ctx *gin.Context){
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET Opening",
-			})
-		})
+		// Create 
+		v1.GET("/opening", handler.CreateOpeningHandler)
 
-		// Create
-		v1.POST("/opening", func (ctx *gin.Context){
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "POST Opening",
-			})
-
-		})
+		// Show
+		v1.POST("/opening", handler.ShowOpeningHandler)
 
 		// DELETE
-		v1.DELETE("/opening", func (ctx *gin.Context){
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "DELETE Opening",
-			})
-		})
+		v1.DELETE("/opening", handler.DeleteOpeningHandler)
 		
 		//UPDATE
-		v1.PUT("/opening", func (ctx *gin.Context){
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "PUT Opening",
-			})
-		})
+		v1.PUT("/opening", handler.UpdateOpeningHandler)
 
 		// SHOW ALL 
-		v1.GET("/openings", func (ctx *gin.Context){
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET openings",
-			})
-		})
+		v1.GET("/openings", handler.ListOpeningsHandler)
 
 	}
 }
